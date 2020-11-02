@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: bluegreen-ingress
+  namespace: development
+  annotations:
+    kubernetes.io/ingress.class: "nginx"    
+    cert-manager.io/issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - bluegreen.iboware.com
+    secretName: bluegreen-tls
+  rules:
+  - host: bluegreen.iboware.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: bluegreen-service
+          servicePort: 80

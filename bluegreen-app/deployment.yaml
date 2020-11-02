@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bluegreen
+  namespace: development
+  labels:
+    app: bluegreen
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bluegreen
+  template:
+    metadata:
+      labels:
+        app: bluegreen
+    spec:
+      containers:
+      - image: iboware/bluegreen:v1.0
+        imagePullPolicy: Always
+        name: bluegreen
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities: {}
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false

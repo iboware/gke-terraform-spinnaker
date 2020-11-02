@@ -64,5 +64,5 @@ $ helm install \
   Install spinnaker via helm:
 
 ```shell
- helm install --name my-release -f values.yaml stable/spinnaker
+ helm install my-release stable/spinnaker
  ```
